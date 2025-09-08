@@ -241,3 +241,155 @@ roger.walk()
 
 #--------------------------------------------
 #Modules
+
+#dog.py
+def bark():
+    print('woof')
+
+#main.py
+import dog # or from dog import bark
+
+dog.bark() #bark()
+
+# we can import the components or functions with 'import' keyword
+#if the content is inside folder,then create empty file '__init__.py' inside the folder and import the required file 
+# more pre defined libraries math,re,json,os,http,random etc.,
+
+
+"""
+Python Notes: sys and argparse Libraries
+----------------------------------------
+
+1. sys module
+-------------
+- The `sys` module provides access to system-specific parameters and functions.
+- It is often used to interact with the Python interpreter and command-line arguments.
+
+Common uses:
+- sys.argv: A list of command-line arguments passed to the script.
+    Example:
+        import sys
+        print("Script name:", sys.argv[0])
+        print("Arguments:", sys.argv[1:])
+- sys.exit([code]): Exits the program. You can provide an exit status code (0 for success).
+    Example:
+        import sys
+        if len(sys.argv) < 2:
+            print("No arguments provided.")
+            sys.exit(1)
+- sys.path: A list of directories where Python looks for modules.
+    Example:
+        import sys
+        print(sys.path)
+- sys.version: Displays the version of Python being used.
+
+2. argparse module
+-------------------
+- The `argparse` module makes it easy to write user-friendly command-line interfaces.
+- It handles parsing arguments and automatically generates help and usage messages.
+
+Steps to use argparse:
+1. Import argparse.
+2. Create a parser object using argparse.ArgumentParser().
+3. Add arguments using parser.add_argument().
+4. Parse the arguments using parser.parse_args().
+
+Basic Example:
+    import argparse
+
+    # Step 1: Create parser
+    parser = argparse.ArgumentParser(description="Demo of argparse usage.")
+
+    # Step 2: Add arguments
+    parser.add_argument("name", help="Your name")
+    parser.add_argument("-a", "--age", type=int, help="Your age")
+
+    # Step 3: Parse arguments
+    args = parser.parse_args()
+
+    # Step 4: Use the arguments
+    print(f"Hello, {args.name}!")
+    if args.age:
+        print(f"You are {args.age} years old.")
+
+Features:
+- Positional arguments: Required arguments (like 'name' in the example).
+- Optional arguments: Usually prefixed with '-' or '--' (like '-a' or '--age').
+- Automatic help: Running `python script.py --help` shows available options.
+- also we can use choices like choices={'red','yellow'}
+
+Summary:
+- Use `sys` for simple and low-level command-line argument access.
+- Use `argparse` for structured, user-friendly, and maintainable argument parsing.
+"""
+# lambda 
+"""
+lambda function
+multiply = labmda a,b = a*b
+
+
+"""
+#map(), filter(), reduce()
+"""
+Python Notes: map(), filter(), and reduce()
+-------------------------------------------
+
+1. map(function, iterable)
+--------------------------
+- Applies a given function to each item in an iterable (like a list, tuple, etc.)
+- Returns a map object (an iterator) which can be converted to a list/tuple if needed.
+
+Example:
+    numbers = [1, 2, 3, 4, 5]
+    def square(x):
+        return x * x
+
+    squared = map(square, numbers)
+    print(list(squared))   # Output: [1, 4, 9, 16, 25]
+
+Shorter version using lambda:
+    squared = map(lambda x: x * x, numbers)
+    print(list(squared))
+
+2. filter(function, iterable)
+-----------------------------
+- Filters items out of an iterable for which the function returns True.
+- Only the elements that satisfy the condition are kept.
+
+Example:
+    numbers = [10, 15, 20, 25, 30]
+    def is_even(x):
+        return x % 2 == 0
+
+    evens = filter(is_even, numbers)
+    print(list(evens))   # Output: [10, 20, 30]
+
+Using lambda:
+    evens = filter(lambda x: x % 2 == 0, numbers)
+    print(list(evens))
+
+3. reduce(function, iterable)
+-----------------------------
+- Applies a rolling computation to sequential pairs of values in the iterable.
+- Unlike map and filter, reduce is not built-in by default (it lives in the functools module).
+
+Example:
+    from functools import reduce
+
+    numbers = [1, 2, 3, 4, 5]
+    def add(x, y):
+        return x + y
+
+    total = reduce(add, numbers)
+    print(total)   # Output: 15
+
+Using lambda:
+    total = reduce(lambda x, y: x + y, numbers)
+    print(total)
+
+Summary:
+--------
+- map   → transform each element
+- filter→ keep only elements that meet a condition
+- reduce→ combine all elements into a single result
+"""
